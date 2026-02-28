@@ -7,7 +7,7 @@ import CategoryRow from "@/components/CategoryRow";
 import CommentatorAvatar from "@/components/CommentatorAvatar";
 import CTASection from "@/components/CTASection";
 import { categories, commentators, videos, heroVideo } from "@/lib/mockData";
-import heroBanner from "@/assets/hero-banner.jpg";
+import heroBanner from "@/assets/header-banner.jpg";
 
 const Index = () => {
   const getCategoryVideos = (categoryId: string) =>
@@ -57,7 +57,7 @@ const Index = () => {
       {/* Categories grid */}
       <section className="gutter-padding py-12">
         <h2 className="section-title text-foreground mb-6">Kategorie</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {categories.map((cat) => (
             <CategoryTile key={cat.id} category={cat} />
           ))}
@@ -89,12 +89,18 @@ const Index = () => {
       {/* Footer */}
       <footer className="gutter-padding py-8 border-t border-border">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
-            © 2025 AbyByloJasno. Všechna práva vyhrazena.
-          </p>
-          <p className="text-xs text-text-dim">
-            Pravda, kterou jinde neuslyšíte.
-          </p>
+          <div>
+            <p className="text-sm text-muted-foreground">
+              © 2025 ABJ, s.r.o. Všechna práva vyhrazena.
+            </p>
+            <p className="text-xs text-muted-foreground/60 mt-1">
+              Za Zahradami 391/9, Dolní Měcholupy, 111 01 Praha 10 | IČ: 14024977
+            </p>
+          </div>
+          <div className="text-right">
+            <p className="text-xs text-muted-foreground">info@abybylojasno.cz</p>
+            <p className="text-xs text-muted-foreground/60 mt-1">#FREESPEECHABSOLUTIST</p>
+          </div>
         </div>
       </footer>
     </div>
