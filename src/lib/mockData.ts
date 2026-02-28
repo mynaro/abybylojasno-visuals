@@ -1,3 +1,12 @@
+import jasneZpravyImg from "@/assets/shows/jasne-zpravy.jpg";
+import sedmickaPlusImg from "@/assets/shows/sedmicka-plus.png";
+import hovoryImg from "@/assets/shows/hovory.jpg";
+import napravoImg from "@/assets/shows/napravo.png";
+import nalevoImg from "@/assets/shows/nalevo.png";
+import eurodzungleImg from "@/assets/shows/eurodzungle.png";
+import svobodnyTrhImg from "@/assets/shows/svobodny-trh.png";
+import jsmeVeValceImg from "@/assets/shows/jsme-ve-valce.png";
+
 export interface Video {
   id: string;
   title: string;
@@ -16,6 +25,7 @@ export interface Category {
   name: string;
   description: string;
   videoCount: number;
+  image?: string;
 }
 
 export interface Commentator {
@@ -26,35 +36,53 @@ export interface Commentator {
 }
 
 export const categories: Category[] = [
-  { id: "politika", name: "Politika", description: "Nekompromisní analýzy české a světové politiky. Co se doopravdy děje za zavřenými dveřmi?", videoCount: 48 },
-  { id: "ekonomika", name: "Ekonomika", description: "Finanční systémy, inflace, kryptoměny — pravda o vaší peněžence.", videoCount: 32 },
-  { id: "zahranici", name: "Ze zahraničí", description: "Světové události bez filtrů a cenzury. Reportáže přímo z míst, kam se mainstream média bojí.", videoCount: 56 },
-  { id: "spolecnost", name: "Společnost", description: "Kultura, vzdělávání, média — jak se mění svět kolem nás.", videoCount: 24 },
-  { id: "rozhovory", name: "Rozhovory", description: "Hloubkové rozhovory s osobnostmi, které mají co říct.", videoCount: 41 },
-  { id: "komentare", name: "Komentáře", description: "Ostré komentáře k aktuálnímu dění.", videoCount: 67 },
+  { id: "jasne-zpravy", name: "Jasné zprávy", description: "Týdenní přehled nejdůležitějších událostí bez cenzury a politické korektnosti.", videoCount: 120, image: jasneZpravyImg },
+  { id: "sedmicka-plus", name: "Sedmička+", description: "Sedmička+ s Janou Bobošíkovou — ostrý komentář k dění uplynulého týdne.", videoCount: 85, image: sedmickaPlusImg },
+  { id: "hovory", name: "Hovory Jany Bobošíkové", description: "Hloubkové rozhovory s osobnostmi, které mají co říct. Bez přetvářky.", videoCount: 64, image: hovoryImg },
+  { id: "napravo", name: "Napravo", description: "Napravo s Kateřinou Dostalovou — pohled zprava na aktuální politiku.", videoCount: 48, image: napravoImg },
+  { id: "nalevo", name: "Nalevo", description: "Nalevo s Petrem Drulákem — geopolitika a mezinárodní vztahy z jiného úhlu.", videoCount: 52, image: nalevoImg },
+  { id: "eurodzungle", name: "Eurodžungle", description: "Eurodžungle s Ondřejem Dostálem — právní pohled na evropskou legislativu.", videoCount: 38, image: eurodzungleImg },
+  { id: "svobodny-trh", name: "Svobodný trh", description: "Svobodný trh s Hanou Lipovskou — ekonomika, finance a svoboda podnikání.", videoCount: 41, image: svobodnyTrhImg },
+  { id: "jsme-ve-valce", name: "Jsme ve válce", description: "Jsme ve válce s Janem Schneiderem — bezpečnostní a vojenská analytika.", videoCount: 33, image: jsmeVeValceImg },
 ];
 
 export const commentators: Commentator[] = [
-  { id: "jan-novak", name: "Jan Novák", bio: "Investigativní novinář s 20letou praxí. Držitel Ceny za odvážnou žurnalistiku.", socialLinks: [{ platform: "X", url: "#" }] },
-  { id: "petra-svobodova", name: "Petra Svobodová", bio: "Analytička mezinárodních vztahů a bývalá dopisovatelka z Bruselu.", socialLinks: [{ platform: "X", url: "#" }] },
-  { id: "martin-kral", name: "Martin Král", bio: "Ekonomický komentátor a autor bestselleru 'Kde jsou naše peníze?'", socialLinks: [{ platform: "X", url: "#" }] },
-  { id: "eva-cerna", name: "Eva Černá", bio: "Válečná reportérka. Pokrývala konflikty na Blízkém východě a v Africe.", socialLinks: [{ platform: "X", url: "#" }] },
-  { id: "tomas-hajek", name: "Tomáš Hájek", bio: "Právník a komentátor zaměřený na lidská práva a spravedlnost.", socialLinks: [{ platform: "X", url: "#" }] },
+  { id: "jana-bobosikova", name: "Jana Bobošíková", bio: "Moderátorka a publicistka. Autorka pořadů Sedmička+ a Hovory Jany Bobošíkové.", socialLinks: [{ platform: "YouTube", url: "https://www.youtube.com/channel/UC4ghMQ16P3acuKKXHTtkS7w" }] },
+  { id: "katerina-dostalova", name: "Kateřina Dostalová", bio: "Politička a komentátorka. Moderátorka pořadu Napravo.", socialLinks: [{ platform: "X", url: "#" }] },
+  { id: "petr-drulak", name: "Petr Drulák", bio: "Politolog a diplomat. Moderátor pořadu Nalevo zaměřeného na geopolitiku.", socialLinks: [{ platform: "X", url: "#" }] },
+  { id: "ondrej-dostal", name: "Ondřej Dostál", bio: "Právník a komentátor. Průvodce Eurodžunglí evropské legislativy.", socialLinks: [{ platform: "X", url: "#" }] },
+  { id: "hana-lipovska", name: "Hana Lipovská", bio: "Ekonomka a publicistka. Autorka pořadu Svobodný trh.", socialLinks: [{ platform: "X", url: "#" }] },
+  { id: "jan-schneider", name: "Jan Schneider", bio: "Bezpečnostní analytik. Moderátor pořadu Jsme ve válce.", socialLinks: [{ platform: "X", url: "#" }] },
 ];
 
 export const videos: Video[] = [
-  { id: "v1", title: "Skrytá pravda o české energetice", description: "Kdo ve skutečnosti ovládá české energetické zdroje? Investigativní sonda do pozadí.", duration: "42:18", category: "Politika", categoryId: "politika", commentator: "Jan Novák", commentatorId: "jan-novak", isPremium: true, isHD: true },
-  { id: "v2", title: "Inflace: Kam mizí vaše úspory?", description: "Podrobná analýza inflačních mechanismů a jejich dopadu na české domácnosti.", duration: "35:45", category: "Ekonomika", categoryId: "ekonomika", commentator: "Martin Král", commentatorId: "martin-kral", isPremium: false, isHD: true },
-  { id: "v3", title: "Zprávy z fronty: Ukrajina 2025", description: "Exkluzivní reportáž přímo z oblastí zasažených konfliktem.", duration: "58:02", category: "Ze zahraničí", categoryId: "zahranici", commentator: "Eva Černá", commentatorId: "eva-cerna", isPremium: true, isHD: true },
-  { id: "v4", title: "Rozhovor s whistleblowerem", description: "Anonymní svědek odhaluje praktiky nadnárodní korporace v ČR.", duration: "47:33", category: "Rozhovory", categoryId: "rozhovory", commentator: "Jan Novák", commentatorId: "jan-novak", isPremium: true, isHD: false },
-  { id: "v5", title: "Cenzura na sociálních sítích", description: "Jak algoritmy formují to, co vidíte a co ne.", duration: "29:15", category: "Společnost", categoryId: "spolecnost", commentator: "Petra Svobodová", commentatorId: "petra-svobodova", isPremium: false, isHD: true },
-  { id: "v6", title: "EU za zavřenými dveřmi", description: "Co se odehrává v bruselských kuloárech?", duration: "51:20", category: "Ze zahraničí", categoryId: "zahranici", commentator: "Petra Svobodová", commentatorId: "petra-svobodova", isPremium: true, isHD: true },
-  { id: "v7", title: "Komentář: Konec demokracie?", description: "Ostrý komentář k aktuálnímu stavu demokratických institucí.", duration: "18:44", category: "Komentáře", categoryId: "komentare", commentator: "Tomáš Hájek", commentatorId: "tomas-hajek", isPremium: false, isHD: false },
-  { id: "v8", title: "Kryptoměny a budoucnost peněz", description: "Bitcoin, CBDC a digitální kontrola — co nás čeká?", duration: "44:10", category: "Ekonomika", categoryId: "ekonomika", commentator: "Martin Král", commentatorId: "martin-kral", isPremium: true, isHD: true },
-  { id: "v9", title: "Mediální manipulace v praxi", description: "Příklady manipulativních technik v mainstreamových médiích.", duration: "33:28", category: "Společnost", categoryId: "spolecnost", commentator: "Jan Novák", commentatorId: "jan-novak", isPremium: false, isHD: true },
-  { id: "v10", title: "Kdo řídí Česko?", description: "Mapa vlivových sítí české politiky.", duration: "62:05", category: "Politika", categoryId: "politika", commentator: "Tomáš Hájek", commentatorId: "tomas-hajek", isPremium: true, isHD: true },
-  { id: "v11", title: "Válka o vodu", description: "Globální boj o nejcennější zdroj planety.", duration: "45:30", category: "Ze zahraničí", categoryId: "zahranici", commentator: "Eva Černá", commentatorId: "eva-cerna", isPremium: true, isHD: true },
-  { id: "v12", title: "Školství v krizi", description: "Proč české školství selhává a co s tím můžeme udělat.", duration: "38:17", category: "Společnost", categoryId: "spolecnost", commentator: "Petra Svobodová", commentatorId: "petra-svobodova", isPremium: false, isHD: false },
+  // Jasné zprávy
+  { id: "v1", title: "TRUMP VYHLÁSIL VÁLKU | Okamura u Moravce, ale bez vlivu?", description: "Přehled nejdůležitějších událostí týdne. Trump eskaluje obchodní válku, Okamura v pořadu Otázky Václava Moravce.", duration: "23:05", category: "Jasné zprávy", categoryId: "jasne-zpravy", commentator: "Jana Bobošíková", commentatorId: "jana-bobosikova", isPremium: false, isHD: true },
+  { id: "v2", title: "Kupkovy křtiny v ODS | Kdo tahá za nitky?", description: "Analýza vnitrostranických bojů v ODS a jejich dopad na českou politiku.", duration: "18:30", category: "Jasné zprávy", categoryId: "jasne-zpravy", commentator: "Jana Bobošíková", commentatorId: "jana-bobosikova", isPremium: false, isHD: true },
+
+  // Sedmička+
+  { id: "v3", title: "Sedmička+: Válka v Evropě — jsme připraveni?", description: "Jana Bobošíková komentuje bezpečnostní situaci v Evropě a připravenost ČR.", duration: "35:12", category: "Sedmička+", categoryId: "sedmicka-plus", commentator: "Jana Bobošíková", commentatorId: "jana-bobosikova", isPremium: true, isHD: true },
+  { id: "v4", title: "Sedmička+: Cenzura na vzestupu", description: "Jak se omezuje svoboda slova v ČR i EU? Příklady z praxe.", duration: "29:45", category: "Sedmička+", categoryId: "sedmicka-plus", commentator: "Jana Bobošíková", commentatorId: "jana-bobosikova", isPremium: true, isHD: true },
+
+  // Hovory
+  { id: "v5", title: "Hovory: Rozhovor s ekonomem o budoucnosti koruny", description: "Exkluzivní rozhovor o měnové politice ČNB a budoucnosti české koruny.", duration: "47:33", category: "Hovory Jany Bobošíkové", categoryId: "hovory", commentator: "Jana Bobošíková", commentatorId: "jana-bobosikova", isPremium: true, isHD: true },
+
+  // Napravo
+  { id: "v6", title: "Napravo: Kam směřuje česká pravice?", description: "Kateřina Dostalová analyzuje stav pravicové politiky v Česku.", duration: "28:15", category: "Napravo", categoryId: "napravo", commentator: "Kateřina Dostalová", commentatorId: "katerina-dostalova", isPremium: false, isHD: true },
+  { id: "v7", title: "Napravo: Dotace vs. volný trh", description: "Debata o evropských dotacích a jejich vlivu na českou ekonomiku.", duration: "32:20", category: "Napravo", categoryId: "napravo", commentator: "Kateřina Dostalová", commentatorId: "katerina-dostalova", isPremium: true, isHD: true },
+
+  // Nalevo
+  { id: "v8", title: "Nalevo: Geopolitika 2025 — nový světový řád?", description: "Petr Drulák o proměnách mezinárodního systému a roli střední Evropy.", duration: "44:10", category: "Nalevo", categoryId: "nalevo", commentator: "Petr Drulák", commentatorId: "petr-drulak", isPremium: true, isHD: true },
+  { id: "v9", title: "Nalevo: Krize NATO a budoucnost aliance", description: "Kam směřuje Severoatlantická aliance v éře měnících se hrozeb?", duration: "38:50", category: "Nalevo", categoryId: "nalevo", commentator: "Petr Drulák", commentatorId: "petr-drulak", isPremium: false, isHD: true },
+
+  // Eurodžungle
+  { id: "v10", title: "Eurodžungle: Nové regulace EU — co nás čeká?", description: "Ondřej Dostál rozebírá nejnovější legislativní návrhy z Bruselu.", duration: "33:28", category: "Eurodžungle", categoryId: "eurodzungle", commentator: "Ondřej Dostál", commentatorId: "ondrej-dostal", isPremium: false, isHD: true },
+
+  // Svobodný trh
+  { id: "v11", title: "Svobodný trh: Inflace a vaše peněženka", description: "Hana Lipovská vysvětluje mechanismy inflace a jak ochránit úspory.", duration: "41:15", category: "Svobodný trh", categoryId: "svobodny-trh", commentator: "Hana Lipovská", commentatorId: "hana-lipovska", isPremium: true, isHD: true },
+
+  // Jsme ve válce
+  { id: "v12", title: "Jsme ve válce: Hybridní hrozby pro ČR", description: "Jan Schneider analyzuje hybridní hrozby ohrožující bezpečnost České republiky.", duration: "36:40", category: "Jsme ve válce", categoryId: "jsme-ve-valce", commentator: "Jan Schneider", commentatorId: "jan-schneider", isPremium: false, isHD: true },
 ];
 
 export const heroVideo: Video = videos[0];
