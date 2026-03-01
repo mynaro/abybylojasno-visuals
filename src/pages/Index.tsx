@@ -1,17 +1,23 @@
-import { Play, ChevronRight } from "lucide-react";
+import { Play, ChevronRight, TrendingUp, Radio, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import SiteHeader from "@/components/SiteHeader";
 import StickyNav from "@/components/StickyNav";
 import CategoryTile from "@/components/CategoryTile";
 import CategoryRow from "@/components/CategoryRow";
 import CommentatorAvatar from "@/components/CommentatorAvatar";
+import ContinueWatchingCard from "@/components/ContinueWatchingCard";
 import CTASection from "@/components/CTASection";
-import { categories, commentators, videos, heroVideo } from "@/lib/mockData";
+import VideoCard from "@/components/VideoCard";
+import { categories, commentators, videos, heroVideo, continueWatching, trending, newReleases, liveStreams } from "@/lib/mockData";
 import heroBanner from "@/assets/header-banner.jpg";
+
+const formatViews = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n));
 
 const Index = () => {
   const getCategoryVideos = (categoryId: string) =>
     videos.filter((v) => v.categoryId === categoryId);
+
+  const liveNow = liveStreams.find((s) => s.isLive);
 
   return (
     <div className="min-h-screen bg-background">
@@ -26,6 +32,14 @@ const Index = () => {
         </div>
         <div className="relative h-full flex items-end gutter-padding pb-16">
           <div className="max-w-xl animate-fade-up" style={{ animationDelay: "0.2s" }}>
+            {/* Live badge */}
+            {liveNow && (
+              <Link to="/zive" className="inline-flex items-center gap-2 bg-primary px-3 py-1.5 rounded-md mb-4 cta-hover">
+                <span className="w-2 h-2 rounded-full bg-primary-foreground animate-pulse" />
+                <span className="text-xs font-mono font-bold text-primary-foreground uppercase tracking-wider">ŽIVĚ</span>
+                <span className="text-xs text-primary-foreground/80">{liveNow.title}</span>
+              </Link>
+            )}
             <span className="inline-block bg-primary/20 text-primary font-medium text-xs px-3 py-1 rounded-full mb-4 border border-primary/30">
               {heroVideo.category}
             </span>
@@ -53,6 +67,64 @@ const Index = () => {
 
       {/* Sticky nav */}
       <StickyNav />
+
+      {/* Continue watching */}
+      {continueWatching.length > 0 && (
+        <section className="gutter-padding py-8">
+          <h2 className="section-title text-foreground mb-6">Pokračovat ve sledování</h2>
+          <div className="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+            {continueWatching.map((v) => (
+              <ContinueWatchingCard key={v.id} video={v} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Trending */}
+      <section className="gutter-padding py-8">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <TrendingUp className="w-5 h-5 text-primary" />
+            <h2 className="section-title text-foreground">Trendy</h2>
+          </div>
+          <Link to="/knihovna" className="text-sm text-primary font-medium hover:underline flex items-center gap-1">
+            Vše <ChevronRight className="w-4 h-4" />
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          {trending.slice(0, 5).map((video, i) => (
+            <div key={video.id} className="relative">
+              <span className="absolute -left-1 -top-2 z-10 font-mono text-5xl font-black text-foreground/8 select-none">
+                {i + 1}
+              </span>
+              <VideoCard video={video} />
+              <div className="flex items-center gap-1 mt-1 text-xs text-muted-foreground">
+                <Eye className="w-3 h-3" />
+                <span className="font-mono">{formatViews(video.views)}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* New releases */}
+      {newReleases.length > 0 && (
+        <section className="gutter-padding py-8">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="section-title text-foreground">Nové</h2>
+            <Link to="/knihovna" className="text-sm text-primary font-medium hover:underline flex items-center gap-1">
+              Zobrazit vše <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <div className="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+            {newReleases.map((v) => (
+              <div key={v.id} className="w-[260px] flex-shrink-0">
+                <VideoCard video={v} />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Categories grid */}
       <section className="gutter-padding py-12">

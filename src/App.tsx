@@ -7,6 +7,8 @@ import Index from "./pages/Index";
 import VideoDetail from "./pages/VideoDetail";
 import CategoryDetail from "./pages/CategoryDetail";
 import CommentatorProfile from "./pages/CommentatorProfile";
+import Library from "./pages/Library";
+import LiveStream from "./pages/LiveStream";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +24,8 @@ const App = () => (
           <Route path="/video/:id" element={<VideoDetail />} />
           <Route path="/kategorie/:id" element={<CategoryDetail />} />
           <Route path="/komentator/:id" element={<CommentatorProfile />} />
+          <Route path="/knihovna" element={<Library />} />
+          <Route path="/zive" element={<LiveStream />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
