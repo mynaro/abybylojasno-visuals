@@ -7,6 +7,35 @@ import eurodzungleImg from "@/assets/shows/eurodzungle.png";
 import svobodnyTrhImg from "@/assets/shows/svobodny-trh.png";
 import jsmeVeValceImg from "@/assets/shows/jsme-ve-valce.png";
 
+// Commentator avatars
+import avatarJana from "@/assets/commentators/jana-bobosikova.jpg";
+import avatarKaterina from "@/assets/commentators/katerina-dostalova.jpg";
+import avatarPetr from "@/assets/commentators/petr-drulak.jpg";
+import avatarOndrej from "@/assets/commentators/ondrej-dostal.jpg";
+import avatarHana from "@/assets/commentators/hana-lipovska.jpg";
+import avatarJan from "@/assets/commentators/jan-schneider.jpg";
+
+// Thumbnails
+import thumbJasneZpravy from "@/assets/thumbnails/jasne-zpravy-thumb.jpg";
+import thumbSedmicka from "@/assets/thumbnails/sedmicka-thumb.jpg";
+import thumbHovory from "@/assets/thumbnails/hovory-thumb.jpg";
+import thumbNapravo from "@/assets/thumbnails/napravo-thumb.jpg";
+import thumbNalevo from "@/assets/thumbnails/nalevo-thumb.jpg";
+import thumbEurodzungle from "@/assets/thumbnails/eurodzungle-thumb.jpg";
+import thumbSvobodnyTrh from "@/assets/thumbnails/svobodny-trh-thumb.jpg";
+import thumbJsmeVeValce from "@/assets/thumbnails/jsme-ve-valce-thumb.jpg";
+
+const categoryThumbnails: Record<string, string> = {
+  "jasne-zpravy": thumbJasneZpravy,
+  "sedmicka-plus": thumbSedmicka,
+  "hovory": thumbHovory,
+  "napravo": thumbNapravo,
+  "nalevo": thumbNalevo,
+  "eurodzungle": thumbEurodzungle,
+  "svobodny-trh": thumbSvobodnyTrh,
+  "jsme-ve-valce": thumbJsmeVeValce,
+};
+
 export interface Video {
   id: string;
   title: string;
@@ -36,6 +65,7 @@ export interface Commentator {
   id: string;
   name: string;
   bio: string;
+  avatar?: string;
   socialLinks: { platform: string; url: string }[];
 }
 
@@ -63,12 +93,12 @@ export const categories: Category[] = [
 ];
 
 export const commentators: Commentator[] = [
-  { id: "jana-bobosikova", name: "Jana Bobošíková", bio: "Moderátorka a publicistka. Autorka pořadů Sedmička+ a Hovory Jany Bobošíkové.", socialLinks: [{ platform: "YouTube", url: "https://www.youtube.com/channel/UC4ghMQ16P3acuKKXHTtkS7w" }] },
-  { id: "katerina-dostalova", name: "Kateřina Dostalová", bio: "Politička a komentátorka. Moderátorka pořadu Napravo.", socialLinks: [{ platform: "X", url: "#" }] },
-  { id: "petr-drulak", name: "Petr Drulák", bio: "Politolog a diplomat. Moderátor pořadu Nalevo zaměřeného na geopolitiku.", socialLinks: [{ platform: "X", url: "#" }] },
-  { id: "ondrej-dostal", name: "Ondřej Dostál", bio: "Právník a komentátor. Průvodce Eurodžunglí evropské legislativy.", socialLinks: [{ platform: "X", url: "#" }] },
-  { id: "hana-lipovska", name: "Hana Lipovská", bio: "Ekonomka a publicistka. Autorka pořadu Svobodný trh.", socialLinks: [{ platform: "X", url: "#" }] },
-  { id: "jan-schneider", name: "Jan Schneider", bio: "Bezpečnostní analytik. Moderátor pořadu Jsme ve válce.", socialLinks: [{ platform: "X", url: "#" }] },
+  { id: "jana-bobosikova", name: "Jana Bobošíková", bio: "Moderátorka a publicistka. Autorka pořadů Sedmička+ a Hovory Jany Bobošíkové.", avatar: avatarJana, socialLinks: [{ platform: "YouTube", url: "https://www.youtube.com/channel/UC4ghMQ16P3acuKKXHTtkS7w" }] },
+  { id: "katerina-dostalova", name: "Kateřina Dostalová", bio: "Politička a komentátorka. Moderátorka pořadu Napravo.", avatar: avatarKaterina, socialLinks: [{ platform: "X", url: "#" }] },
+  { id: "petr-drulak", name: "Petr Drulák", bio: "Politolog a diplomat. Moderátor pořadu Nalevo zaměřeného na geopolitiku.", avatar: avatarPetr, socialLinks: [{ platform: "X", url: "#" }] },
+  { id: "ondrej-dostal", name: "Ondřej Dostál", bio: "Právník a komentátor. Průvodce Eurodžunglí evropské legislativy.", avatar: avatarOndrej, socialLinks: [{ platform: "X", url: "#" }] },
+  { id: "hana-lipovska", name: "Hana Lipovská", bio: "Ekonomka a publicistka. Autorka pořadu Svobodný trh.", avatar: avatarHana, socialLinks: [{ platform: "X", url: "#" }] },
+  { id: "jan-schneider", name: "Jan Schneider", bio: "Bezpečnostní analytik. Moderátor pořadu Jsme ve válce.", avatar: avatarJan, socialLinks: [{ platform: "X", url: "#" }] },
 ];
 
 // Helper to generate dates
@@ -142,6 +172,13 @@ export const videos: Video[] = [
   { id: "v46", title: "Jsme ve válce: Zbrojní průmysl ČR", description: "Česká zbrojovka a její role v evropské bezpečnostní architektuře.", duration: "34:10", category: "Jsme ve válce", categoryId: "jsme-ve-valce", commentator: "Jan Schneider", commentatorId: "jan-schneider", isPremium: false, isHD: true, publishedAt: daysAgo(21), views: 18900 },
   { id: "v47", title: "Jsme ve válce: Informační válka", description: "Kdo ovládá informační prostor a proč na tom záleží.", duration: "40:50", category: "Jsme ve válce", categoryId: "jsme-ve-valce", commentator: "Jan Schneider", commentatorId: "jan-schneider", isPremium: true, isHD: true, publishedAt: daysAgo(28), views: 31500 },
 ];
+
+// Assign thumbnails based on category
+videos.forEach((v) => {
+  if (!v.thumbnail) {
+    v.thumbnail = categoryThumbnails[v.categoryId];
+  }
+});
 
 export const heroVideo: Video = videos[0];
 
