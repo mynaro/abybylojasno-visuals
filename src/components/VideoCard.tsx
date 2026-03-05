@@ -12,8 +12,12 @@ const VideoCard = ({ video, className = "" }: VideoCardProps) => {
     <Link to={`/video/${video.id}`} className={`group block ${className}`}>
       <div className="card-hover rounded-md overflow-hidden">
         {/* Thumbnail */}
-        <div className="relative aspect-video placeholder-gradient overflow-hidden rounded-md">
-          <div className="thumbnail-hover w-full h-full placeholder-gradient" />
+        <div className="relative aspect-video overflow-hidden rounded-md">
+          {video.thumbnail ? (
+            <img src={video.thumbnail} alt={video.title} className="thumbnail-hover w-full h-full object-cover" loading="lazy" />
+          ) : (
+            <div className="thumbnail-hover w-full h-full placeholder-gradient" />
+          )}
           
           {/* Play overlay */}
           <div className="play-overlay absolute inset-0 flex items-center justify-center bg-background/40">

@@ -10,7 +10,12 @@ const ContinueWatchingCard = ({ video }: ContinueWatchingCardProps) => {
   return (
     <Link to={`/video/${video.id}`} className="group block w-[300px] flex-shrink-0">
       <div className="card-hover rounded-md overflow-hidden">
-        <div className="relative aspect-video placeholder-gradient rounded-md overflow-hidden">
+        <div className="relative aspect-video rounded-md overflow-hidden">
+          {video.thumbnail ? (
+            <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover" loading="lazy" />
+          ) : (
+            <div className="w-full h-full placeholder-gradient" />
+          )}
           <div className="play-overlay absolute inset-0 flex items-center justify-center bg-background/40">
             <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
               <Play className="w-5 h-5 text-primary-foreground ml-0.5" fill="currentColor" />
