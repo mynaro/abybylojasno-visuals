@@ -7,6 +7,7 @@ import CategoryRow from "@/components/CategoryRow";
 import CommentatorAvatar from "@/components/CommentatorAvatar";
 import ContinueWatchingCard from "@/components/ContinueWatchingCard";
 import CTASection from "@/components/CTASection";
+import MerchSection from "@/components/MerchSection";
 import VideoCard from "@/components/VideoCard";
 import { categories, commentators, videos, heroVideo, continueWatching, trending, newReleases, liveStreams } from "@/lib/mockData";
 import heroBanner from "@/assets/header-banner.jpg";
@@ -154,6 +155,9 @@ const Index = () => {
           ))}
         </div>
       </section>
+
+      {/* Merch */}
+      <MerchSection />
 
       {/* CTA */}
       <CTASection />
